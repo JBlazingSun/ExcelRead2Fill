@@ -1,12 +1,14 @@
 package Model;
 
-public class DemoData {
+public class DistriData {
     private String orderID;
     private String consignee;
     private String phone;
     private String address;
     private String goodsName;
     private String goodsCount;
+    private String goodsTotalValue;
+    private String today;
 
     public String getOrderID() {
         return orderID;
@@ -54,5 +56,21 @@ public class DemoData {
 
     public void setGoodsCount(String goodsCount) {
         this.goodsCount = goodsCount;
+    }
+
+    public String getGoodsTotalValue() {
+        return goodsTotalValue;
+    }
+
+    public void setGoodsTotalValue(String goodsTotalValue) {
+        this.goodsTotalValue = goodsTotalValue;
+    }
+
+    public String getToday() {
+        return today;
+    }
+
+    public void setToday(String today) {
+        this.today = today;
     }
 }

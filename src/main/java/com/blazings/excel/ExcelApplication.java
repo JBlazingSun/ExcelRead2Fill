@@ -39,11 +39,13 @@ public class ExcelApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         disableAccessWarnings();
         String fileName = "D:\\download\\s.xlsx";
-        String templateFileName = "出库打单模版填充.xlsx";
+        String templateFileName = "D:\\download\\出库打单模版填充.xlsx";
+        String fillFileName = "D:\\download\\out.xlsx";
 
         ExcelDataListener dataListener = new ExcelDataListener();
         // 这里 需要指定读用哪个class去读，然后读取第一个sheet 文件流会自动关闭
         EasyExcel.read(fileName, DistriData.class, dataListener).sheet("总表").doRead();
 
+        EasyExcel.write(fillFileName).withTemplate(templateFileName).sheet().doFill(dataListener.list.get(0));
     }
 }

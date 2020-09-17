@@ -8,7 +8,14 @@ public class DistriData {
     private String goodsName;
     private String goodsCount;
     private String goodsTotalValue;
-    private String today;
+    //运输性质
+    String transportProperties;
+    //运费付款方式
+    String payType;
+    //送货方式
+    String deliveryType;
+    private String remark;
+
 
     public String getOrderID() {
         return orderID;
@@ -66,11 +73,35 @@ public class DistriData {
         this.goodsTotalValue = goodsTotalValue;
     }
 
-    public String getToday() {
-        return today;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setToday(String today) {
-        this.today = today;
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getTransportProperties() {
+        return transportProperties;
+    }
+
+    public void setTransportProperties(String transportProperties) {
+        this.transportProperties = transportProperties;
+    }
+
+    public String getPayType() {
+        return payType;
+    }
+
+    public void setPayType(String payType) {
+        this.payType = payType;
+    }
+
+    public String getDeliveryType() {
+        return deliveryType;
+    }
+
+    public void setDeliveryType(String deliveryType) {
+        this.deliveryType = deliveryType;
     }
 }

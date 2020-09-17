@@ -21,8 +21,13 @@ public class ExcelDataListener extends AnalysisEventListener<DistriData> {
 
     @Override
     public void invoke(DistriData distriData, AnalysisContext analysisContext) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        distriData.setToday(df.format(new Date()));
+        //临时唯一用, 最后处理
+        distriData.setRemark(distriData.getGoodsName()+"   数量: "+distriData.getGoodsCount()+"   价格:"+Integer.valueOf(distriData.getGoodsCount())* 399);
+
+        //固定
+//        distriData.setTransportProperties("标准快递");
+//        distriData.setPayType("月结");
+//        distriData.setDeliveryType("送货上楼");
         list.add(distriData);
     }
 

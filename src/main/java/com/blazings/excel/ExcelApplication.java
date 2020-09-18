@@ -59,7 +59,7 @@ public class ExcelApplication implements CommandLineRunner {
 //        scan.close();
 
         //C:\blazings\同步\work\易拼\物流\发货
-        String sourceFileName = "C:\\blazings\\同步\\work\\易拼\\物流\\发货\\9-15到9-17-10.40 唯一红酒.xlsx";
+        String sourceFileName = "C:\\blazings\\同步\\work\\易拼\\物流\\发货\\9-15到9-17-10.40多次辟谷丹.xlsx";
         //C:\blazings\同步\work\易拼\物流\打单
         String templateFileName = "C:\\blazings\\同步\\work\\易拼\\物流\\打单\\德邦快递精简模板列表.xlsx";
         //C:\blazings\同步\work\易拼\物流\打单
@@ -136,7 +136,7 @@ public class ExcelApplication implements CommandLineRunner {
         if (distriDataNoMsg.stream().count()>0){
             FileUtil.copy(fillFileName,fillDestFileNameNoMsg,true);
             for (DistriData distriDataNoMsgAddOrderId : distriDataNoMsg) {
-                distriDataNoMsgAddOrderId.setRemark(distriDataNoMsgAddOrderId.getOrderID());
+                distriDataNoMsgAddOrderId.setRemark(distriDataNoMsgAddOrderId.getOrderID()+"  "+distriDataNoMsgAddOrderId.getGoodsName()+ "   "+distriDataNoMsgAddOrderId.getGoodsCount());
             }
             EasyExcel.write(fillDestFileNameNoMsg).withTemplate(templateFileName).sheet().doFill(distriDataNoMsg);
 
@@ -145,7 +145,7 @@ public class ExcelApplication implements CommandLineRunner {
         if (distriDataOnlyNameAndPhone.stream().count()>0){
             FileUtil.copy(fillFileName,fillDestFileNameOnlyNameAndPhone,true);
             for (DistriData distriDataOnlyNameAndPhoneAddId : distriDataOnlyNameAndPhone) {
-                distriDataOnlyNameAndPhoneAddId.setRemark(distriDataOnlyNameAndPhoneAddId.getOrderID());
+                distriDataOnlyNameAndPhoneAddId.setRemark(distriDataOnlyNameAndPhoneAddId.getOrderID()+"  "+distriDataOnlyNameAndPhoneAddId.getGoodsName()+ "   "+distriDataOnlyNameAndPhoneAddId.getGoodsCount());
             }
             EasyExcel.write(fillDestFileNameOnlyNameAndPhone).withTemplate(templateFileName).sheet().doFill(distriDataOnlyNameAndPhone);
 
@@ -159,6 +159,23 @@ public class ExcelApplication implements CommandLineRunner {
                     "   价格:"+
                     Integer.valueOf(distriData.getGoodsCount())* 399);
         }
+        //打印货物总数
+        int valueGoodsTotal=0;
+        int distriDataNoMsgTotal =0;
+        int distriDataOnlyNameAndPhoneTotal =0;
+        for (DistriData distriData : distriDataOut) {
+            valueGoodsTotal+= Integer.valueOf(distriData.getGoodsCount());
+        }
+        System.out.println("有效收获地址货物总数为:" + valueGoodsTotal);
+        for (DistriData distriData : distriDataNoMsg) {
+            distriDataNoMsgTotal+=Integer.valueOf(distriData.getGoodsCount());
+        }
+        System.out.println("没有地址货物总数为:" + distriDataNoMsgTotal);
+        for (DistriData distriData : distriDataOnlyNameAndPhone) {
+            distriDataOnlyNameAndPhoneTotal+=Integer.valueOf(distriData.getGoodsCount());
+        }
+        System.out.println("没有地址货物总数为:" + distriDataOnlyNameAndPhoneTotal);
+        System.out.println("总货物总数为:" + (valueGoodsTotal+distriDataNoMsgTotal+distriDataOnlyNameAndPhoneTotal));
         //货物件数恢复为1
         for (DistriData distriData : distriDataOut) {
             distriData.setGoodsCount("1");

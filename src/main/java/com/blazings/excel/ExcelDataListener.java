@@ -25,6 +25,7 @@ public class ExcelDataListener extends AnalysisEventListener<DistriData> {
         distriData.setTransportProperties("标准快递");
         distriData.setPayType("月结");
         distriData.setDeliveryType("送货上楼");
+        distriData.setYPSC("易拼商城");
         list.add(distriData);
     }
 

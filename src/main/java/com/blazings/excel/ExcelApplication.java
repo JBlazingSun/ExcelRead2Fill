@@ -43,7 +43,7 @@ public class ExcelApplication implements CommandLineRunner {
     }
     @Override
     public void run(String... args) throws Exception {
-//        disableAccessWarnings();
+        disableAccessWarnings();
         //
         List<DistriData> distriDataOut = new ArrayList<>();
         //只有名字和电话
@@ -51,13 +51,15 @@ public class ExcelApplication implements CommandLineRunner {
         //名字和电话都是空
         List<DistriData> distriDataNoMsg = new ArrayList<>();
 
-        String sheetNameInput = "t";
+        String sheetNameInput = "总表";
+
+
 //        Scanner scan = new Scanner(System.in);
 //        sheetNameInput = scan.nextLine();
 //        scan.close();
 
         //C:\blazings\同步\work\易拼\物流\发货
-        String sourceFileName = "C:\\blazings\\同步\\work\\易拼\\物流\\发货\\9-15到9-17-10.40多次辟谷丹.xlsx";
+        String sourceFileName = "C:\\blazings\\同步\\work\\易拼\\物流\\发货\\9-15到9-17-10.40 唯一红酒.xlsx";
         //C:\blazings\同步\work\易拼\物流\打单
         String templateFileName = "C:\\blazings\\同步\\work\\易拼\\物流\\打单\\德邦快递精简模板列表.xlsx";
         //C:\blazings\同步\work\易拼\物流\打单
@@ -66,6 +68,11 @@ public class ExcelApplication implements CommandLineRunner {
         String fillDestFileName = "C:\\blazings\\download\\德邦上传.xlsx";
         String fillDestFileNameOnlyNameAndPhone = "C:\\blazings\\download\\德邦上传没有地址-只有电话和姓名.xlsx";
         String fillDestFileNameNoMsg = "C:\\blazings\\download\\德邦上传没有任何信息.xlsx";
+        //清除文件
+        FileUtil.del(fillDestFileName);
+        FileUtil.del(fillDestFileNameOnlyNameAndPhone);
+        FileUtil.del(fillDestFileNameNoMsg);
+
         FileUtil.copy(fillFileName,fillDestFileName,true);
 
         ExcelDataListener excelDataListener = new ExcelDataListener();
@@ -87,15 +94,32 @@ public class ExcelApplication implements CommandLineRunner {
                 continue;
             }
             //正常收货
-            //
             if (distriDataOut.stream().count()>0){
-                for (DistriData dataOut : distriDataOut) {
-                    if (excelSourceData.getConsignee()!=null &&
-                            excelSourceData.getPhone()!=null &&
-                            excelSourceData.getAddress()!=null){
-                        distriDataOut.add(excelSourceData);
-                        break;
+                int findCount=0;
+                int dataIndex = 0;
+                //有姓名,电话, 地址的
+                if (excelSourceData.getConsignee()!=null &&
+                        excelSourceData.getPhone()!=null &&
+                        excelSourceData.getAddress()!=null) {
+                    for (int i = 0; i < distriDataOut.size(); i++) {
+                        //有相同的人
+                        if (excelSourceData.getConsignee().equals(distriDataOut.get(i).getConsignee()) &&
+                                excelSourceData.getPhone().equals(distriDataOut.get(i).getPhone()) &&
+                                excelSourceData.getGoodsName().equals(distriDataOut.get(i).getGoodsName()))
+                        {
+                            findCount++;
+                            dataIndex = i;
+                            break;
+                        }
                     }
+                }
+                //说明唯一
+                if (findCount == 0) {
+                    distriDataOut.add(excelSourceData);
+                }
+                //+1货物
+                if (findCount > 0) {
+                    distriDataOut.get(dataIndex).setGoodsCount(String.valueOf(Integer.valueOf(distriDataOut.get(dataIndex).getGoodsCount())+1));
                 }
             }
             //第一次对比
@@ -125,6 +149,19 @@ public class ExcelApplication implements CommandLineRunner {
             }
             EasyExcel.write(fillDestFileNameOnlyNameAndPhone).withTemplate(templateFileName).sheet().doFill(distriDataOnlyNameAndPhone);
 
+        }
+
+        //设置正常收货备注
+        for (DistriData distriData : distriDataOut) {
+            distriData.setRemark(distriData.getGoodsName()+
+                    "   数量: "+
+                    distriData.getGoodsCount()+
+                    "   价格:"+
+                    Integer.valueOf(distriData.getGoodsCount())* 399);
+        }
+        //货物件数恢复为1
+        for (DistriData distriData : distriDataOut) {
+            distriData.setGoodsCount("1");
         }
         EasyExcel.write(fillDestFileName).withTemplate(templateFileName).sheet().doFill(distriDataOut);
     }

@@ -8,6 +8,7 @@ public class DistriData {
     private String goodsName;
     private String goodsCount;
     private String goodsTotalValue;
+    private String YPSC;
     //运输性质
     String transportProperties;
     //运费付款方式
@@ -103,5 +104,13 @@ public class DistriData {
 
     public void setDeliveryType(String deliveryType) {
         this.deliveryType = deliveryType;
+    }
+
+    public String getYPSC() {
+        return YPSC;
+    }
+
+    public void setYPSC(String YPSC) {
+        this.YPSC = YPSC;
     }
 }

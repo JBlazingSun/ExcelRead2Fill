@@ -53,12 +53,12 @@ public class ExcelApplication implements CommandLineRunner {
 
         String sheetNameInput = "总表";
 
-
 //        Scanner scan = new Scanner(System.in);
 //        sheetNameInput = scan.nextLine();
 //        scan.close();
-
+        
         //C:\blazings\同步\work\易拼\物流\发货
+        //D:\微云同步助手\328801898\同步\work\易拼\物流\打单    home
         String sourceFileName = "C:\\blazings\\同步\\work\\易拼\\物流\\发货\\9-15到9-17-10.40多次辟谷丹.xlsx";
         //C:\blazings\同步\work\易拼\物流\打单
         String templateFileName = "C:\\blazings\\同步\\work\\易拼\\物流\\打单\\德邦快递精简模板列表.xlsx";

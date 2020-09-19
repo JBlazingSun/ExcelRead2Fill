@@ -51,7 +51,7 @@ public class ExcelApplication implements CommandLineRunner {
         //名字和电话都是空
         List<DistriData> distriDataNoMsg = new ArrayList<>();
 
-        String sheetNameInput = "总表";
+        String sheetNameInput = "Table";
 
 //        Scanner scan = new Scanner(System.in);
 //        sheetNameInput = scan.nextLine();
@@ -59,15 +59,18 @@ public class ExcelApplication implements CommandLineRunner {
         
         //C:\blazings\同步\work\易拼\物流\发货
         //D:\微云同步助手\328801898\同步\work\易拼\物流\打单    home
-        String sourceFileName = "C:\\blazings\\同步\\work\\易拼\\物流\\发货\\9-15到9-17-10.40多次辟谷丹.xlsx";
+        String sourceFileName = "D:\\微云同步助手\\328801898\\同步\\work\\易拼\\物流\\发货\\物流单_20200919234001.xlsx";
         //C:\blazings\同步\work\易拼\物流\打单
-        String templateFileName = "C:\\blazings\\同步\\work\\易拼\\物流\\打单\\德邦快递精简模板列表.xlsx";
+        //D:\微云同步助手\328801898\同步\work\易拼\物流\打单 home
+        String templateFileName = "D:\\微云同步助手\\328801898\\同步\\work\\易拼\\物流\\打单\\德邦快递精简模板列表.xlsx";
         //C:\blazings\同步\work\易拼\物流\打单
         //C:\blazings\download
-        String fillFileName = "C:\\blazings\\同步\\work\\易拼\\物流\\打单\\null.xlsx";
-        String fillDestFileName = "C:\\blazings\\download\\德邦上传.xlsx";
-        String fillDestFileNameOnlyNameAndPhone = "C:\\blazings\\download\\德邦上传没有地址-只有电话和姓名.xlsx";
-        String fillDestFileNameNoMsg = "C:\\blazings\\download\\德邦上传没有任何信息.xlsx";
+        //D:\微云同步助手\328801898\同步\work\易拼\物流\打单 home
+        String fillFileName = "D:\\微云同步助手\\328801898\\同步\\work\\易拼\\物流\\打单\\null.xlsx";
+        //D:\download home
+        String fillDestFileName = "D:\\download\\德邦上传.xlsx";
+        String fillDestFileNameOnlyNameAndPhone = "D:\\download\\德邦上传没有地址-只有电话和姓名.xlsx";
+        String fillDestFileNameNoMsg = "D:\\download\\德邦上传没有任何信息.xlsx";
         //清除文件
         FileUtil.del(fillDestFileName);
         FileUtil.del(fillDestFileNameOnlyNameAndPhone);
@@ -77,7 +80,7 @@ public class ExcelApplication implements CommandLineRunner {
 
         ExcelDataListener excelDataListener = new ExcelDataListener();
         // 这里 需要指定读用哪个class去读，然后读取第一个sheet 文件流会自动关闭
-        EasyExcel.read(sourceFileName, DistriData.class, excelDataListener).sheet(sheetNameInput).doRead();
+        EasyExcel.read(sourceFileName, DistriData.class, excelDataListener).sheet().doRead();
 
         for (DistriData excelSourceData : excelDataListener.list) {
             //如果名字和电话都是空

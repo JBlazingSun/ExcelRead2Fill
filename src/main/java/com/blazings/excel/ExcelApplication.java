@@ -51,7 +51,7 @@ public class ExcelApplication implements CommandLineRunner {
         //名字和电话都是空
         List<DistriData> distriDataNoMsg = new ArrayList<>();
 
-        String sheetNameInput = "Table";
+//        String sheetNameInput = "Table";
 
 //        Scanner scan = new Scanner(System.in);
 //        sheetNameInput = scan.nextLine();
@@ -59,7 +59,7 @@ public class ExcelApplication implements CommandLineRunner {
         
         //C:\blazings\同步\work\易拼\物流\发货
         //D:\微云同步助手\328801898\同步\work\易拼\物流\打单    home
-        String sourceFileName = "D:\\微云同步助手\\328801898\\同步\\work\\易拼\\物流\\发货\\物流单_20200919234001.xlsx";
+        String sourceFileName = "D:\\微云同步助手\\328801898\\同步\\work\\易拼\\物流\\2020-09-17-10-40---2020-9-19-12-32-00\\2020-09-17-10-40---2020-9-19-12-32-00.xlsx";
         //C:\blazings\同步\work\易拼\物流\打单
         //D:\微云同步助手\328801898\同步\work\易拼\物流\打单 home
         String templateFileName = "D:\\微云同步助手\\328801898\\同步\\work\\易拼\\物流\\打单\\德邦快递精简模板列表.xlsx";

@@ -52,6 +52,8 @@ public class ExcelApplication implements CommandLineRunner {
         List<templateData> distriDataOnlyNameAndPhone = new ArrayList<>();
         //名字和电话都是空
         List<templateData> distriDataNoMsg = new ArrayList<>();
+        //只有红酒一瓶的
+        List<templateData> onlyOneWineList = new ArrayList<>();
         OutData outData = new OutData();
         String sourceFileName="";
         String templateFileName="";
@@ -59,6 +61,7 @@ public class ExcelApplication implements CommandLineRunner {
         String fillDestFileName="";
         String fillDestFileNameOnlyNameAndPhone="";
         String fillDestFileNameNoMsg="";
+        String onlyOneWineName="";
 
         //home
         //work
@@ -76,6 +79,7 @@ public class ExcelApplication implements CommandLineRunner {
             fillDestFileName = "C:\\blazings\\download\\德邦上传.xlsx";
             fillDestFileNameOnlyNameAndPhone = "C:\\blazings\\download\\德邦上传没有地址-只有电话和姓名.xlsx";
             fillDestFileNameNoMsg = "C:\\blazings\\download\\德邦上传没有任何信息.xlsx";
+            onlyOneWineName = "C:\\blazings\\download\\只有奇数瓶红酒的.xlsx";
         }
         if ("home".equals(switchAddr)){
             //D:\微云同步助手\328801898\同步\work\易拼\物流\打单    home
@@ -88,12 +92,14 @@ public class ExcelApplication implements CommandLineRunner {
             fillDestFileName = "D:\\download\\德邦上传.xlsx";
             fillDestFileNameOnlyNameAndPhone = "D:\\download\\德邦上传没有地址-只有电话和姓名.xlsx";
             fillDestFileNameNoMsg = "D:\\download\\德邦上传没有任何信息.xlsx";
+            onlyOneWineName = "D:\\download\\只有奇数瓶红酒的.xlsx";
         }
 
         //清除文件
         FileUtil.del(fillDestFileName);
         FileUtil.del(fillDestFileNameOnlyNameAndPhone);
         FileUtil.del(fillDestFileNameNoMsg);
+        FileUtil.del(onlyOneWineName);
 
         FileUtil.copy(fillFileName,fillDestFileName,true);
 
@@ -109,17 +115,27 @@ public class ExcelApplication implements CommandLineRunner {
         //打印名字和电话都是空
         readLogic.WriteNullMsg(distriDataOnlyNameAndPhone, templateFileName, fillFileName, fillDestFileNameOnlyNameAndPhone);
 
-        //正常收货的备注设置
-        readLogic.SetValueRemark(distriDataOut);
-        //筛选出单数的红酒
-
-
         //打印货物总数
         readLogic.PrintGoodsTotalNum(distriDataOut, distriDataOnlyNameAndPhone, distriDataNoMsg);
+
+        //筛选出奇数--红酒
+        readLogic.FiltOddNumWine(distriDataOut, onlyOneWineList);
+
+        //奇数的备注设置--红酒
+        readLogic.SetValueRemark(onlyOneWineList);
+
+        //正常收货的备注设置
+        readLogic.SetValueRemark(distriDataOut);
+
+        //打印出奇数--红酒
+        EasyExcel.write(onlyOneWineName).withTemplate(templateFileName).sheet().doFill(onlyOneWineList);
+
         //货物件数恢复为1
         for (templateData distriData : distriDataOut) {
             distriData.setGoodsCount("1");
         }
+        //打印正常地址单
         EasyExcel.write(fillDestFileName).withTemplate(templateFileName).sheet().doFill(distriDataOut);
     }
+
 }

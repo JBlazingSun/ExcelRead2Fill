@@ -12,6 +12,32 @@ import java.util.List;
 @Service
 public class ReadLogic {
 
+    //筛选出奇数的红酒
+    public void FiltOddNumWine(List<templateData> distriDataOut, List<templateData> onlyOneWineList) {
+        for (int i = 0; i < distriDataOut.size(); i++) {
+            //红酒数量为1的
+            if (distriDataOut.get(i).getGoodsName().equals("紫薯红酒") &&
+                    distriDataOut.get(i).getGoodsCount().equals("1")){
+                //红酒数量为1的添加到list
+                onlyOneWineList.add(distriDataOut.get(i));
+                //红酒数量为1的从原表删除
+                distriDataOut.remove(i);
+            }
+            //红酒数量为大于1的奇数
+            if (distriDataOut.get(i).getGoodsName().equals("紫薯红酒") &&
+                    !distriDataOut.get(i).getGoodsCount().equals("1") &&
+                    Integer.valueOf(distriDataOut.get(i).getGoodsCount())%2!=0){
+                //从outData中把奇数的减一
+                distriDataOut.get(i).setGoodsCount(String.valueOf((Integer.valueOf(distriDataOut.get(i).getGoodsCount())-1)));
+                templateData templateData = distriDataOut.get(i);
+                //红酒数量为大于1的list
+                templateData.setGoodsCount("1");
+                onlyOneWineList.add(templateData);
+
+            }
+        }
+    }
+
     //打印空白表   //打印名字和电话都是空
     public void WriteNullMsg(List<templateData> data, String templateFileName, String fillFileName, String fillDestFileNameNoMsg) {
 

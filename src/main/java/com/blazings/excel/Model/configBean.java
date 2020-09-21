@@ -1,4 +1,4 @@
-package Model;
+package com.blazings.excel.Model;
 
 public class configBean {
 

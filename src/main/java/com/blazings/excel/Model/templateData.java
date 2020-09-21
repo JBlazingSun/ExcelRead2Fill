@@ -1,6 +1,6 @@
-package Model;
+package com.blazings.excel.Model;
 
-public class DistriData {
+public class templateData {
     private String orderID;
     private String consignee;
     private String phone;

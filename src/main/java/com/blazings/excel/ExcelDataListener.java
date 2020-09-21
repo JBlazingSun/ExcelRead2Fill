@@ -1,24 +1,20 @@
 package com.blazings.excel;
 
-import Model.DistriData;
+import com.blazings.excel.Model.templateData;
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class ExcelDataListener extends AnalysisEventListener<DistriData> {
+public class ExcelDataListener extends AnalysisEventListener<templateData> {
 
-    List<DistriData> list = new ArrayList<DistriData>();
+    public List<templateData> list = new ArrayList<templateData>();
     public ExcelDataListener() {
     }
 
     @Override
-    public void invoke(DistriData distriData, AnalysisContext analysisContext) {
-        //临时唯一用, 最后处理
-//        distriData.setRemark(distriData.getGoodsName()+"   数量: "+distriData.getGoodsCount()+"   价格:"+Integer.valueOf(distriData.getGoodsCount())* 399);
+    public void invoke(templateData distriData, AnalysisContext analysisContext) {
         distriData.setGoodsCount("1");
 
         //固定
@@ -34,7 +30,7 @@ public class ExcelDataListener extends AnalysisEventListener<DistriData> {
 
     }
 
-    public List<DistriData> getData(){
+    public List<templateData> getData(){
         return list;
     }
 }

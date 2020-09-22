@@ -29,8 +29,4 @@ public class ExcelDataListener extends AnalysisEventListener<templateData> {
     public void doAfterAllAnalysed(AnalysisContext analysisContext) {
 
     }
-
-    public List<templateData> getData(){
-        return list;
-    }
 }

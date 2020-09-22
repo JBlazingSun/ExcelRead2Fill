@@ -7,6 +7,8 @@ import com.blazings.excel.Model.templateData;
 import com.blazings.excel.ExcelDataListener;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,27 +16,27 @@ public class ReadLogic {
 
     //筛选出奇数的红酒
     public void FiltOddNumWine(List<templateData> distriDataOut, List<templateData> onlyOneWineList) {
+        ArrayList<Integer> integers = new ArrayList<>();
         for (int i = 0; i < distriDataOut.size(); i++) {
             //红酒数量为1的
-            if (distriDataOut.get(i).getGoodsName().equals("紫薯红酒") &&
-                    distriDataOut.get(i).getGoodsCount().equals("1")){
+            if (distriDataOut.get(i).getGoodsName().contains("紫薯红酒") ){
+
                 //红酒数量为1的添加到list
                 onlyOneWineList.add(distriDataOut.get(i));
                 //红酒数量为1的从原表删除
                 distriDataOut.remove(i);
             }
             //红酒数量为大于1的奇数
-            if (distriDataOut.get(i).getGoodsName().equals("紫薯红酒") &&
-                    !distriDataOut.get(i).getGoodsCount().equals("1") &&
-                    Integer.valueOf(distriDataOut.get(i).getGoodsCount())%2!=0){
-                //从outData中把奇数的减一
-                distriDataOut.get(i).setGoodsCount(String.valueOf((Integer.valueOf(distriDataOut.get(i).getGoodsCount())-1)));
-                templateData templateData = distriDataOut.get(i);
-                //红酒数量为大于1的list
-                templateData.setGoodsCount("1");
-                onlyOneWineList.add(templateData);
-
-            }
+//            if (distriDataOut.get(i).getGoodsName().equals("紫薯红酒") &&
+//                    !distriDataOut.get(i).getGoodsCount().equals("1") &&
+//                    Integer.valueOf(distriDataOut.get(i).getGoodsCount())%2!=0){
+//                //从outData中把奇数的减一
+//                distriDataOut.get(i).setGoodsCount(String.valueOf((Integer.valueOf(distriDataOut.get(i).getGoodsCount())-1)));
+//                templateData templateData = distriDataOut.get(i);
+//                //红酒数量为大于1的list
+//                templateData.setGoodsCount("1");
+//                onlyOneWineList.add(templateData);
+//            }
         }
     }
 
@@ -44,7 +46,7 @@ public class ReadLogic {
         if (data.stream().count() > 0) {
             FileUtil.copy(fillFileName, fillDestFileNameNoMsg, true);
             for (templateData distriDataNoMsgAddOrderId : data) {
-                distriDataNoMsgAddOrderId.setRemark(distriDataNoMsgAddOrderId.getOrderID() + "  " + distriDataNoMsgAddOrderId.getGoodsName() + "   " + distriDataNoMsgAddOrderId.getGoodsCount());
+                distriDataNoMsgAddOrderId.setRemark(distriDataNoMsgAddOrderId.getGoodsName() + "   " + distriDataNoMsgAddOrderId.getGoodsCount()+"  "+distriDataNoMsgAddOrderId.getOrderID() );
             }
             EasyExcel.write(fillDestFileNameNoMsg).withTemplate(templateFileName).sheet().doFill(data);
         }

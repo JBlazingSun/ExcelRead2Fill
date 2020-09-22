@@ -65,7 +65,7 @@ public class ExcelApplication implements CommandLineRunner {
 
         //home
         //work
-        String switchAddr = "work";
+        String switchAddr = "home";
 //        String sheetNameInput = "Table";
 
         if ("work".equals(switchAddr)){
@@ -78,12 +78,12 @@ public class ExcelApplication implements CommandLineRunner {
             fillFileName = "C:\\blazings\\同步\\work\\易拼\\物流\\打单\\null.xlsx";
             fillDestFileName = "C:\\blazings\\download\\德邦上传.xlsx";
             fillDestFileNameOnlyNameAndPhone = "C:\\blazings\\download\\德邦上传没有地址-只有电话和姓名.xlsx";
-            fillDestFileNameNoMsg = "C:\\blazings\\download\\德邦上传没有任何信息.xlsx";
+            fillDestFileNameNoMsg = "C:\\blazings\\download\\德邦上传缺少信息.xlsx";
             onlyOneWineName = "C:\\blazings\\download\\只有奇数瓶红酒的.xlsx";
         }
         if ("home".equals(switchAddr)){
             //D:\微云同步助手\328801898\同步\work\易拼\物流\打单    home
-            sourceFileName = "D:\\download\\工作簿1.xlsx";
+            sourceFileName = "D:\\download\\2020-09-17-10-40---2020-9-19-12-32-00.xlsx";
             //D:\微云同步助手\328801898\同步\work\易拼\物流\打单 home
             templateFileName = "D:\\微云同步助手\\328801898\\同步\\work\\易拼\\物流\\打单\\德邦快递精简模板列表.xlsx";
             //D:\微云同步助手\328801898\同步\work\易拼\物流\打单 home
@@ -91,7 +91,7 @@ public class ExcelApplication implements CommandLineRunner {
             //D:\download home
             fillDestFileName = "D:\\download\\德邦上传.xlsx";
             fillDestFileNameOnlyNameAndPhone = "D:\\download\\德邦上传没有地址-只有电话和姓名.xlsx";
-            fillDestFileNameNoMsg = "D:\\download\\德邦上传没有任何信息.xlsx";
+            fillDestFileNameNoMsg = "D:\\download\\德邦上传缺少信息.xlsx";
             onlyOneWineName = "D:\\download\\只有奇数瓶红酒的.xlsx";
         }
 

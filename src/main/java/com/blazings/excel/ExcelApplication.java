@@ -65,12 +65,12 @@ public class ExcelApplication implements CommandLineRunner {
 
         //home
         //work
-        String switchAddr = "home";
+        String switchAddr = "work";
 //        String sheetNameInput = "Table";
 
         if ("work".equals(switchAddr)){
             //C:\blazings\同步\work\易拼\物流\发货
-            sourceFileName = "C:\\blazings\\download\\2020-09-17-10-40---2020-9-19-12-32-00.xlsx";
+            sourceFileName = "C:\\blazings\\同步\\work\\易拼\\物流\\发货\\15号-----20号没有发货的(1).xlsx";
             //C:\blazings\同步\work\易拼\物流\打单
             templateFileName = "C:\\blazings\\同步\\work\\易拼\\物流\\打单\\德邦快递精简模板列表.xlsx";
             //C:\blazings\同步\work\易拼\物流\打单
@@ -119,16 +119,16 @@ public class ExcelApplication implements CommandLineRunner {
         readLogic.PrintGoodsTotalNum(distriDataOut, distriDataOnlyNameAndPhone, distriDataNoMsg);
 
         //筛选出奇数--红酒
-        readLogic.FiltOddNumWine(distriDataOut, onlyOneWineList);
+//        readLogic.FiltOddNumWine(distriDataOut, onlyOneWineList);
 
         //奇数的备注设置--红酒
-        readLogic.SetValueRemark(onlyOneWineList);
+//        readLogic.SetValueRemark(onlyOneWineList);
 
         //正常收货的备注设置
         readLogic.SetValueRemark(distriDataOut);
 
         //打印出奇数--红酒
-        EasyExcel.write(onlyOneWineName).withTemplate(templateFileName).sheet().doFill(onlyOneWineList);
+//        EasyExcel.write(onlyOneWineName).withTemplate(templateFileName).sheet().doFill(onlyOneWineList);
 
         //货物件数恢复为1
         for (templateData distriData : distriDataOut) {

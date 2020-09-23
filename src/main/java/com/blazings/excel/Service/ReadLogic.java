@@ -19,7 +19,7 @@ public class ReadLogic {
         ArrayList<Integer> integers = new ArrayList<>();
         for (int i = 0; i < distriDataOut.size(); i++) {
             //红酒数量为1的
-            if (distriDataOut.get(i).getGoodsName().contains("紫薯红酒") ){
+            if (distriDataOut.get(i).getGoodsName().equals("紫薯红酒") ){
 
                 //红酒数量为1的添加到list
                 onlyOneWineList.add(distriDataOut.get(i));

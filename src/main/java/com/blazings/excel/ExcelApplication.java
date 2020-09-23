@@ -65,7 +65,11 @@ public class ExcelApplication implements CommandLineRunner {
 
         //home
         //work
-        String switchAddr = "work";
+        String switchAddr = "home";
+
+        String switchFunc = "";
+        //是否筛选红酒
+        boolean filtOnlyOneWine = true;
 //        String sheetNameInput = "Table";
 
         if ("work".equals(switchAddr)){
@@ -118,17 +122,20 @@ public class ExcelApplication implements CommandLineRunner {
         //打印货物总数
         readLogic.PrintGoodsTotalNum(distriDataOut, distriDataOnlyNameAndPhone, distriDataNoMsg);
 
-        //筛选出奇数--红酒
-//        readLogic.FiltOddNumWine(distriDataOut, onlyOneWineList);
+        if (filtOnlyOneWine){
+            //筛选出奇数--红酒
+            readLogic.FiltOddNumWine(distriDataOut, onlyOneWineList);
 
-        //奇数的备注设置--红酒
-//        readLogic.SetValueRemark(onlyOneWineList);
-
+            //奇数的备注设置--红酒
+            readLogic.SetValueRemark(onlyOneWineList);
+        }
         //正常收货的备注设置
         readLogic.SetValueRemark(distriDataOut);
 
-        //打印出奇数--红酒
-//        EasyExcel.write(onlyOneWineName).withTemplate(templateFileName).sheet().doFill(onlyOneWineList);
+        if (filtOnlyOneWine) {
+            //打印出奇数--红酒
+            EasyExcel.write(onlyOneWineName).withTemplate(templateFileName).sheet().doFill(onlyOneWineList);
+        }
 
         //货物件数恢复为1
         for (templateData distriData : distriDataOut) {
@@ -137,5 +144,4 @@ public class ExcelApplication implements CommandLineRunner {
         //打印正常地址单
         EasyExcel.write(fillDestFileName).withTemplate(templateFileName).sheet().doFill(distriDataOut);
     }
-
 }

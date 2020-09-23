@@ -9,34 +9,46 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 @Service
 public class ReadLogic {
-
     //筛选出奇数的红酒
     public void FiltOddNumWine(List<templateData> distriDataOut, List<templateData> onlyOneWineList) {
-        ArrayList<Integer> integers = new ArrayList<>();
-        for (int i = 0; i < distriDataOut.size(); i++) {
+        Iterator<templateData> iterator = distriDataOut.iterator();
+        while (iterator.hasNext()){
+            templateData next = iterator.next();
             //红酒数量为1的
-            if (distriDataOut.get(i).getGoodsName().equals("紫薯红酒") ){
-
+            if("紫薯红酒".equals(next.getGoodsName()) &&
+            next.getGoodsCount().equals("1")){
                 //红酒数量为1的添加到list
-                onlyOneWineList.add(distriDataOut.get(i));
+                onlyOneWineList.add(next);
                 //红酒数量为1的从原表删除
-                distriDataOut.remove(i);
+                iterator.remove();
             }
             //红酒数量为大于1的奇数
-//            if (distriDataOut.get(i).getGoodsName().equals("紫薯红酒") &&
-//                    !distriDataOut.get(i).getGoodsCount().equals("1") &&
-//                    Integer.valueOf(distriDataOut.get(i).getGoodsCount())%2!=0){
-//                //从outData中把奇数的减一
-//                distriDataOut.get(i).setGoodsCount(String.valueOf((Integer.valueOf(distriDataOut.get(i).getGoodsCount())-1)));
-//                templateData templateData = distriDataOut.get(i);
-//                //红酒数量为大于1的list
-//                templateData.setGoodsCount("1");
-//                onlyOneWineList.add(templateData);
-//            }
+            if ("紫薯红酒".equals(next.getGoodsName()) &&
+                    !next.getGoodsCount().equals("1") &&
+                    Integer.valueOf(next.getGoodsCount())%2!=0){
+                //从outData中把奇数的减一
+                next.setGoodsCount(String.valueOf((Integer.valueOf(next.getGoodsCount())-1)));
+                templateData templateData = new templateData();
+                templateData.setOrderID(next.getOrderID());
+                templateData.setConsignee(next.getConsignee());
+                templateData.setPhone(next.getPhone());
+                templateData.setAddress(next.getAddress());
+                templateData.setGoodsName(next.getGoodsName());
+                templateData.setGoodsCount("1");
+                templateData.setGoodsTotalValue(next.getGoodsTotalValue());
+                templateData.setRemark(next.getRemark());
+                templateData.setTransportProperties(next.getTransportProperties());
+                templateData.setPayType(next.getPayType());
+                templateData.setDeliveryType(next.getDeliveryType());
+                templateData.setYPSC(next.getYPSC());
+                onlyOneWineList.add(templateData);
+            }
         }
     }
 

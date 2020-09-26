@@ -21,7 +21,7 @@ public class ReadLogic {
         while (iterator.hasNext()){
             templateData next = iterator.next();
             //红酒数量为1的
-            if("紫薯红酒".equals(next.getGoodsName()) &&
+            if(next.getGoodsName().contains("紫薯红酒") &&
             next.getGoodsCount().equals("1")){
                 //红酒数量为1的添加到list
                 onlyOneWineList.add(next);
@@ -29,7 +29,7 @@ public class ReadLogic {
                 iterator.remove();
             }
             //红酒数量为大于1的奇数
-            if ("紫薯红酒".equals(next.getGoodsName()) &&
+            if (next.getGoodsName().contains("紫薯红酒") &&
                     !next.getGoodsCount().equals("1") &&
                     Integer.valueOf(next.getGoodsCount())%2!=0){
                 //从outData中把奇数的减一

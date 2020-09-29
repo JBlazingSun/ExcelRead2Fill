@@ -1,6 +1,7 @@
 package com.blazings.excel.Model;
 
 public class templateData {
+    private String badId;
     private String orderID;
     private String consignee;
     private String phone;
@@ -17,6 +18,13 @@ public class templateData {
     String deliveryType;
     private String remark;
 
+    public String getBadId() {
+        return badId;
+    }
+
+    public void setBadId(String badId) {
+        this.badId = badId;
+    }
 
     public String getOrderID() {
         return orderID;

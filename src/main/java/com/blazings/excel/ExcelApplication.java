@@ -66,7 +66,7 @@ public class ExcelApplication implements CommandLineRunner {
 
         //home
         //work
-        String switchAddr = "work";
+        String switchAddr = "home";
 
         String switchFunc = "";
         //是否筛选红酒
@@ -89,7 +89,8 @@ public class ExcelApplication implements CommandLineRunner {
         }
         if ("home".equals(switchAddr)){
             //D:\微云同步助手\328801898\同步\work\易拼\物流\打单    home
-            sourceFileName = "D:\\download\\2020-09-17-10-40---2020-9-19-12-32-00.xlsx";
+            //D:\download
+            sourceFileName = "D:\\download\\1瓶红酒.xlsx";
             //D:\微云同步助手\328801898\同步\work\易拼\物流\打单 home
             templateFileName = "D:\\微云同步助手\\328801898\\同步\\work\\易拼\\物流\\打单\\德邦快递精简模板列表.xlsx";
             agencyGoods = "D:\\微云同步助手\\328801898\\同步\\work\\易拼\\物流\\打单\\代发发货模板.xlsx";
@@ -143,6 +144,12 @@ public class ExcelApplication implements CommandLineRunner {
         //货物件数恢复为1
         for (templateData distriData : distriDataOut) {
             distriData.setGoodsCount("1");
+//            if (distriData.getOrderID() == null) {
+//                distriData.setOrderID(" ");
+//            }
+//            if (distriData.getBadId() == null) {
+//                distriData.setBadId(" ");
+//            }
         }
         //打印正常地址单
         EasyExcel.write(fillDestFileName).withTemplate(templateFileName).sheet().doFill(distriDataOut);

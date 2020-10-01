@@ -70,7 +70,7 @@ public class ExcelApplication implements CommandLineRunner {
 
         String switchFunc = "";
         //是否筛选红酒
-        boolean filtOnlyOneWine = true;
+        boolean filtOnlyOneWine = false;
 //        String sheetNameInput = "Table";
 
         if ("work".equals(switchAddr)){
@@ -90,7 +90,7 @@ public class ExcelApplication implements CommandLineRunner {
         if ("home".equals(switchAddr)){
             //D:\微云同步助手\328801898\同步\work\易拼\物流\打单    home
             //D:\download
-            sourceFileName = "D:\\download\\1瓶红酒.xlsx";
+            sourceFileName = "D:\\微云同步助手\\328801898\\同步\\work\\易拼\\物流\\发货\\1瓶红酒筛选后.xlsx";
             //D:\微云同步助手\328801898\同步\work\易拼\物流\打单 home
             templateFileName = "D:\\微云同步助手\\328801898\\同步\\work\\易拼\\物流\\打单\\德邦快递精简模板列表.xlsx";
             agencyGoods = "D:\\微云同步助手\\328801898\\同步\\work\\易拼\\物流\\打单\\代发发货模板.xlsx";

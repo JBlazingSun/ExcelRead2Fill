@@ -92,6 +92,7 @@ public class ReadLogic {
                         //有相同的人
                         if (excelSourceData.getConsignee().equals(distriDataOut.get(i).getConsignee()) &&
                                 excelSourceData.getPhone().equals(distriDataOut.get(i).getPhone()) &&
+                                excelSourceData.getAddress().equals(distriDataOut.get(i).getAddress()) &&
                                 excelSourceData.getGoodsName().equals(distriDataOut.get(i).getGoodsName()))
                         {
                             findCount++;
@@ -122,11 +123,22 @@ public class ReadLogic {
     //正常收货的备注设置
     public void SetValueRemark(List<templateData> distriDataOut) {
         for (templateData distriData : distriDataOut) {
-            distriData.setRemark(distriData.getGoodsName()+
-                    "   数量: "+
-                    distriData.getGoodsCount()+
-                    "   价格:"+
-                    Integer.valueOf(distriData.getGoodsCount())* 399);
+            //2瓶红酒价格是800
+            if (distriData.getGoodsName().contains("2瓶")){
+                distriData.setRemark(distriData.getGoodsName()+
+                        "   数量: "+
+                        distriData.getGoodsCount()+
+                        "   价格:"+
+                        Integer.valueOf(distriData.getGoodsCount())* 800);
+            }
+            else {
+                distriData.setRemark(distriData.getGoodsName()+
+                        "   数量: "+
+                        distriData.getGoodsCount()+
+                        "   价格:"+
+                        Integer.valueOf(distriData.getGoodsCount())* 399);
+            }
+
         }
     }
     //打印货物总数

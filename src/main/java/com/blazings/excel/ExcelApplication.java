@@ -82,7 +82,7 @@ public class ExcelApplication implements CommandLineRunner {
             //C:\blazings\同步\work\易拼\物流\打单
             //C:\blazings\download
             fillFileName = "C:\\blazings\\同步\\work\\易拼\\物流\\打单\\null.xlsx";
-            fillDestFileName = "C:\\blazings\\download\\德邦上传.xlsx";
+            fillDestFileName = "C:\\blazings\\download\\上传.xlsx";
             fillDestFileNameOnlyNameAndPhone = "C:\\blazings\\download\\德邦上传没有地址-只有电话和姓名.xlsx";
             fillDestFileNameNoMsg = "C:\\blazings\\download\\德邦上传缺少信息.xlsx";
             onlyOneWineName = "C:\\blazings\\download\\只有奇数瓶红酒的.xlsx";
@@ -90,14 +90,14 @@ public class ExcelApplication implements CommandLineRunner {
         if ("home".equals(switchAddr)){
             //D:\微云同步助手\328801898\同步\work\易拼\物流\打单    home
             //D:\download
-            sourceFileName = "D:\\微云同步助手\\328801898\\同步\\work\\易拼\\物流\\发货\\物流单_20201014163004.xlsx";
+            sourceFileName = "D:\\微云同步助手\\328801898\\同步\\work\\易拼\\物流\\发货\\16-19号.xlsx";
             //D:\微云同步助手\328801898\同步\work\易拼\物流\打单 home
             templateFileName = "D:\\微云同步助手\\328801898\\同步\\work\\易拼\\物流\\打单\\德邦快递精简模板列表.xlsx";
             agencyGoods = "D:\\微云同步助手\\328801898\\同步\\work\\易拼\\物流\\打单\\代发发货模板.xlsx";
             //D:\微云同步助手\328801898\同步\work\易拼\物流\打单 home
             fillFileName = "D:\\微云同步助手\\328801898\\同步\\work\\易拼\\物流\\打单\\null.xlsx";
             //D:\download home
-            fillDestFileName = "D:\\download\\德邦上传.xlsx";
+            fillDestFileName = "D:\\download\\上传.xlsx";
             fillDestFileNameOnlyNameAndPhone = "D:\\download\\德邦上传没有地址-只有电话和姓名.xlsx";
             fillDestFileNameNoMsg = "D:\\download\\德邦上传缺少信息.xlsx";
             onlyOneWineName = "D:\\download\\只有奇数瓶红酒的.xlsx";

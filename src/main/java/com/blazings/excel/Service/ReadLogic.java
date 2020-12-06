@@ -131,12 +131,20 @@ public class ReadLogic {
                         "   价格:"+
                         Integer.valueOf(distriData.getGoodsCount())* 800);
             }
-            else {
+            //2盒辟谷丹价格是800
+            else if (distriData.getGoodsName().contains("2盒")) {
                 distriData.setRemark(distriData.getGoodsName()+
                         "   数量: "+
                         distriData.getGoodsCount()+
                         "   价格:"+
-                        Integer.valueOf(distriData.getGoodsCount())* 399);
+                        Integer.valueOf(distriData.getGoodsCount())* 800);
+            }
+            else {
+                distriData.setRemark(distriData.getGoodsName() +
+                        "   数量: " +
+                        distriData.getGoodsCount() +
+                        "   价格:" +
+                        Integer.valueOf(distriData.getGoodsCount()) * 399);
             }
 
         }

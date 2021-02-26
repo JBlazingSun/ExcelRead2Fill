@@ -66,7 +66,7 @@ public class ExcelApplication implements CommandLineRunner {
 
         //home
         //work
-        String switchAddr = "home";
+        String switchAddr = "work";
 
         String switchFunc = "";
         //是否筛选红酒
@@ -75,7 +75,7 @@ public class ExcelApplication implements CommandLineRunner {
 
         if ("work".equals(switchAddr)){
             //C:\blazings\同步\work\易拼\物流\发货
-            sourceFileName = "C:\\blazings\\同步\\work\\易拼\\物流\\发货\\物流单_20200926004949.xlsx";
+            sourceFileName = "C:\\blazings\\同步\\work\\易拼\\物流\\发货\\工作簿1.xlsx";
             //C:\blazings\同步\work\易拼\物流\打单
             templateFileName = "C:\\blazings\\同步\\work\\易拼\\物流\\打单\\德邦快递精简模板列表.xlsx";
             agencyGoods = "C:\\blazings\\同步\\work\\易拼\\物流\\打单\\代发发货模板.xlsx";
